@@ -1,0 +1,17 @@
+# 1. FROM: Use a pre-imported base image [cite: 105, 131]
+FROM alpine:3.18
+
+# 2. WORKDIR: Set the execution context [cite: 19]
+WORKDIR /app
+
+# 3. COPY: Move the app script into the image [cite: 19]
+COPY app.py .
+
+# 4. ENV: Set a default environment variable [cite: 20]
+ENV USER_NAME=Developer
+
+# 5. RUN: Execute a command during build in isolation [cite: 19, 21]
+RUN echo "Building the sample application..." > build_log.txt
+
+# 6. CMD: Define the default startup command [cite: 20]
+CMD ["python3", "app.py"]

@@ -28,6 +28,8 @@ func main() {
 			return
 		}
 		removeImage(os.Args[2])
+	case "images":
+		listImages()
 	default:
 		fmt.Printf("❌ Unknown command: %s\n", command)
 	}
@@ -52,4 +54,25 @@ func removeImage(imageName string) {
 	}
 
 	fmt.Printf("🗑️  Successfully removed image: %s\n", imageName)
+}
+
+func listImages() {
+	homeDir, _ := os.UserHomeDir()
+	imagesPath := filepath.Join(homeDir, ".docksmith", "images")
+
+	files, err := os.ReadDir(imagesPath)
+	if err != nil {
+		fmt.Println("❌ Error reading images directory:", err)
+		return
+	}
+
+	if len(files) == 0 {
+		fmt.Println("No images found.")
+		return
+	}
+
+	fmt.Println("📦 Available Images:")
+	for _, file := range files {
+		fmt.Println("-", file.Name())
+	}
 }

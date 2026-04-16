@@ -1,0 +1,7 @@
+{
+  "states": [
+    { "name": "initial", "status": "active" },
+    { "name": "processing", "status": "pending" },
+    { "name": "completed", "status": "done" }
+  ]
+}
